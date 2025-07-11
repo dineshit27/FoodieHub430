@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MunchCult - Savor the Flavor</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <style>
+    :root {
+      --mc-green: #14532d;
+      --mc-green-hover: #0f3b23;
+      --mc-text-light: #f7fefc;
+    }
+
+    body {
+      background-color: #f7fefc;
+      color: #1a1a1a;
+    }
+
+    .logo-small {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+    }
+
+    .navbar {
+      background-color: var(--mc-green);
+    }
+
+    .navbar-brand, .nav-link {
+      color: var(--mc-text-light) !important;
+    }
+
+    .nav-link:hover {
+      color: #a7f3d0 !important;
+    }
+
+/* Mega Menu Styling */
+.nav-item.position-static .dropdown-menu {
+  left: 50% !important;
+  transform: translateX(-50%);
+  width: 90vw; /* Default for larger screens */
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  display: none;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.nav-item.dropdown:hover .dropdown-menu,
+.nav-item.dropdown.show .dropdown-menu { /* Added .show for robustness with JS toggling */
+  display: block;
+}
+
+.dropdown-menu ul li:hover {
+  transform: translateX(5px);
+  transition: 0.3s;
+  color: var(--mc-green);
+  cursor: pointer;
+}
+
+/* --- Responsive Adjustments for Mega Menu --- */
+
+/* For devices smaller than 1200px (Bootstrap's 'xl' breakpoint) */
+@media (max-width: 1199.98px) {
+  .nav-item.position-static .dropdown-menu {
+    width: 95vw; /* Slightly wider on larger tablets/smaller desktops */
+  }
+}
+
+/* For devices smaller than 992px (Bootstrap's 'lg' breakpoint - common for tablets) */
+@media (max-width: 991.98px) {
+  .nav-item.position-static .dropdown-menu {
+    width: 98vw; /* Almost full width on tablets */
+    padding: 15px;
+  }
+}
+
+/* For devices smaller than 768px (Bootstrap's 'md' breakpoint - common for mobile phones) */
+@media (max-width: 767.98px) {
+  .nav-item.position-static .dropdown-menu {
+    left: 0 !important; /* Align to the left edge of the viewport */
+    transform: translateX(0); /* Remove the horizontal centering */
+    width: 100%; /* Take full width of the screen */
+    border-radius: 0; /* Remove rounded corners for a full-width look */
+    padding: 10px;
+    box-shadow: none; /* Lighter or no shadow for mobile */
+    position: absolute; /* Keep it positioned relative to its parent nav-item */
+    top: auto; 
+    max-height: calc(100vh - var(--navbar-height, 56px)); /* Make it scrollable and fit screen, assuming a navbar height */
+  }
+
+  /* Ensure columns stack on mobile */
+  .dropdown-menu .container-fluid .row {
+    flex-direction: column;
+  }
+
+  .dropdown-menu .container-fluid .col {
+    width: 100%; 
+    margin-bottom: 15px;
+  }
+
+  .dropdown-menu .container-fluid .col:last-child {
+    margin-bottom: 0; 
+  }
+
+  .dropdown-menu h6 {
+    margin-bottom: 8px; 
+  }
+
+  .dropdown-menu ul li {
+    padding: 3px 0; 
+  }
+}
+
+
+.nav-item.dropdown .nav-link.dropdown-toggle[aria-expanded="true"] {
+  color: var(--mc-green);
+  background-color: var(--mc-light-grey); 
+  
+}
+
+
+footer#contact {
+  background-color: var(--mc-green);
+  color: var(--mc-text-light);
+  padding: 1rem 0;
+}
+
+footer#contact a {
+  color: var(--mc-text-light);
+}
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="home.html">
+        <img src="img/Logo.png" alt="Munch Cult Logo" class="me-2 logo-small rounded-circle" />
+        <strong>MunchCult</strong>
+      </a>
+      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon text-light"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active fw-bold" href="home.html">Home</a>
+          </li>
+
+          <!-- Mega Menu -->
+          <li class="nav-item dropdown position-static">
+            <a class="nav-link fw-bold dropdown-toggle" href="menu.html" id="megaMenu" role="button">Menu</a>
+            <div class="dropdown-menu">
+              <div class="container-fluid">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 text-start">
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Desi Food Categories</h6>
+                    <ul class="list-unstyled small">
+                      <li>Chicken Biryani</li>
+                      <li>Mutton Karahi</li>
+                      <li>Grilled Smoked Salmon</li>
+                      <li>Chapli Kabab</li>
+                      <li>Tandoori Tikka</li>
+                      <li>Prawn Biryani</li>
+                      <li>Prawns With Steak</li>
+                      <li>Siri Paye</li>
+                      <li>Chicken Kaleji</li>
+                      <li>Halwa Puri</li>
+                      <li>Palak Paneer</li>
+                      <li>Daal Chana</li>
+                      <li>Aloo Keema</li>
+                      <li>Haleem</li>
+                      <li>Seekh Kabab</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Popular Chinese Dishes</h6>
+                    <ul class="list-unstyled small">
+                      <li>Chicken Manchurian</li>
+                      <li>Golden Crunch Tempura</li>
+                      <li>Egg Fried Rice</li>
+                      <li>Chicken Shashlik</li>
+                      <li>Beef chili Dry</li>
+                      <li>Momos</li>
+                      <li>Chicken Chowmein</li>
+                      <li>Hot & Sour Soup</li>
+                      <li>Dynamite Shrimp</li>
+                      <li>Schezwan Rice</li>
+                      <li>Beef with Oyster Sauce</li>
+                      <li>Vegetable Spring Rolls</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Famous Italian Dishes</h6>
+                    <ul class="list-unstyled small">
+                      <li>Pepperoni Pizza</li>
+                      <li>Pappardelle Bolognese</li>
+                      <li>Creamy Alfredo Pasta</li>
+                      <li>Mushroom Risotto</li>
+                      <li>Bruschetta</li>
+                      <li>Lasagna</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Crispy Cravings</h6>
+                    <ul class="list-unstyled small">
+                      <li>Crispy Cheesy Sandwich</li>
+                      <li>Mozzarella Sticks</li>
+                      <li>Crispy Zinger Burger</li>
+                      <li>Fried Chicken</li>
+                      <li>Samosa</li>
+                      <li>Chicken Loaded Fries</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Special BBQ</h6>
+                    <ul class="list-unstyled small">
+                      <li>Chicken BBQ</li>
+                      <li>Grilled FInger Fish</li>
+                      <li>Grilled Lamb Chops</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Flavoured Icecream</h6>
+                    <ul class="list-unstyled small">
+                      <li>Chicken BBQ</li>
+                      <li>Grilled FInger Fish</li>
+                      <li>Grilled Lamb Chops</li>
+                      <li>BBQ Beef Ribs</li>
+                      <li>Spicy Grilled Prawns</li>
+                      <li>Grilled Smoked Salmon</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Popular Desserts</h6>
+                    <ul class="list-unstyled small">
+                      <li>Molten Lava Cake</li>
+                      <li>New York Cheesecake</li>
+                      <li>Fudge Brownie with Ice Cream</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Cake Shake Bake</h6>
+                    <ul class="list-unstyled small">
+                      <li>Cup Cakes</li>
+                      <li>Macarons</li>
+                      <li>Birthday Cake</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Regular Drinks</h6>
+                    <ul class="list-unstyled small">
+                      <li>Coffee</li>
+                      <li>Kashmiri Kehwa</li>
+                      <li>Special Tea</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Special Drinks</h6>
+                    <ul class="list-unstyled small">
+                      <li>Mint Margarita</li>
+                      <li>Lemon Iced Tea</li>
+                      <li>Cold Coffee</li>
+                    </ul>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- About Us -->
+          <li class="nav-item">
+            <a class="nav-link fw-bold" href="about_us.html">About Us</a>
+          </li>
+
+          <!-- Contact Us -->
+          <li class="nav-item">
+            <a class="nav-link fw-bold" href="contact_us.html">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<script>
+  document.querySelector("form").addEventListener("submit", function (e) {
+    if (!this.checkValidity()) {
+      e.preventDefault(); // Prevent form submission
+      alert("Please fill out all required fields before submitting.");
+    } else {
+      alert("Your form has been submitted. Go to the Home page.");
+    }
+  });
+</script>
+
+
+  <!-- Form Container -->
+<div class="container mt-5 pt-5" style="max-width: 800px;">
+  <form action="mailto:Munchclut@example.com" method="POST" enctype="text/plain">
+    <div class="mb-3">
+      <label for="name">Full Name:</label>
+      <input type="text" name="name" class="form-control" id="name" placeholder="Enter your full name" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="email">Email Address:</label>
+      <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email address" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="reservation_date">Reservation Date:</label>
+      <input type="date" name="reservation_date" class="form-control" id="reservation_date" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="reservation_time">Reservation Time:</label>
+      <input type="time" name="reservation_time" class="form-control" id="reservation_time" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="number_of_guests">Number of Guests:</label>
+      <input type="number" name="number_of_guests" class="form-control" id="number_of_guests" placeholder="Enter number of guests" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="special_request">Special Request:</label>
+      <textarea name="special_request" class="form-control" id="special_request" rows="3" placeholder="Special Request" required></textarea>
+    </div>
+
+    <div class="mb-3">
+      <button type="submit" class="btn btn-success fw-bold">Submit</button>
+    </div>
+  </form>
+</div>
+
+   <!-- Footer -->
+  <footer id="contact">
+    <div class="container text-center">
+      <img src="img/Logo.png" 
+     alt="Munch Cult Logo" 
+     class="mb-2 rounded-circle" 
+     style="width: 80px; height: 80px; object-fit: cover;" />
+      <p class="mb-1 fw-bold">Munch Cult</p>
+      <p class="mb-2">Serving Flavor with Passion</p>
+      <div class="mb-2">
+        <a href="https://www.instagram.com/_dinx_pvt_430/#" class="me-3 fs-4"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/m-dinesh-d30/" class="me-3 fs-4"><i class="bi bi-instagram"></i></a>
+        <a href="mailto:contact@munchcult.com" class="fs-4"><i class="bi bi-envelope-fill"></i></a>
+      </div>
+      <small>&copy; 2025 Munch Cult. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  document.querySelector("form").addEventListener("submit", function (e) {
+    if (!this.checkValidity()) {
+      e.preventDefault(); 
+      alert("Please fill out all required fields before submitting.");
+    } else {
+      alert("Your form has been submitted.");
+    }
+  });
+</script>
+
+</body>
+</html>
+

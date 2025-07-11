@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MunchCult - Savor the Flavor</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <style>
+    :root {
+      --mc-green: #14532d;
+      --mc-green-hover: #0f3b23;
+      --mc-text-light: #f7fefc;
+    }
+
+    body {
+      background-color: #f7fefc;
+      color: #1a1a1a;
+    }
+
+    .logo-small {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+    }
+
+    .navbar {
+      background-color: var(--mc-green);
+    }
+
+    .navbar-brand, .nav-link {
+      color: var(--mc-text-light) !important;
+    }
+
+    .nav-link:hover {
+      color: #a7f3d0 !important;
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092') center/cover no-repeat;
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+      margin-top: var(--bs-navbar-height, 56px);
+    }
+
+    .btn-custom {
+      background-color: var(--mc-green);
+      color: #fff;
+    }
+
+    .btn-custom:hover {
+      background-color: var(--mc-green-hover);
+    }
+
+    .section-title {
+      color: var(--mc-green);
+    }
+
+    .menu-img {
+      height: 250px;
+      object-fit: cover;
+    }
+/* Mega Menu Styling */
+.nav-item.position-static .dropdown-menu {
+  left: 50% !important;
+  transform: translateX(-50%);
+  width: 90vw; /* Default for larger screens */
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  display: none;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.nav-item.dropdown:hover .dropdown-menu,
+.nav-item.dropdown.show .dropdown-menu { /* Added .show for robustness with JS toggling */
+  display: block;
+}
+
+.dropdown-menu ul li:hover {
+  transform: translateX(5px);
+  transition: 0.3s;
+  color: var(--mc-green);
+  cursor: pointer;
+}
+
+/* --- Responsive Adjustments for Mega Menu --- */
+
+/* For devices smaller than 1200px (Bootstrap's 'xl' breakpoint) */
+@media (max-width: 1199.98px) {
+  .nav-item.position-static .dropdown-menu {
+    width: 95vw; /* Slightly wider on larger tablets/smaller desktops */
+  }
+}
+
+/* For devices smaller than 992px (Bootstrap's 'lg' breakpoint - common for tablets) */
+@media (max-width: 991.98px) {
+  .nav-item.position-static .dropdown-menu {
+    width: 98vw; /* Almost full width on tablets */
+    padding: 15px;
+  }
+}
+
+/* For devices smaller than 768px (Bootstrap's 'md' breakpoint - common for mobile phones) */
+@media (max-width: 767.98px) {
+  .nav-item.position-static .dropdown-menu {
+    left: 0 !important; /* Align to the left edge of the viewport */
+    transform: translateX(0); /* Remove the horizontal centering */
+    width: 100%; /* Take full width of the screen */
+    border-radius: 0; /* Remove rounded corners for a full-width look */
+    padding: 10px;
+    box-shadow: none; /* Lighter or no shadow for mobile */
+    position: absolute; /* Keep it positioned relative to its parent nav-item */
+    top: auto; /* Let it flow naturally, or set a specific top if overlay */
+    max-height: calc(100vh - var(--navbar-height, 56px)); /* Make it scrollable and fit screen, assuming a navbar height */
+  }
+
+  /* Ensure columns stack on mobile */
+  .dropdown-menu .container-fluid .row {
+    flex-direction: column; /* Stacks all columns vertically */
+  }
+
+  .dropdown-menu .container-fluid .col {
+    width: 100%; /* Each category takes full width */
+    margin-bottom: 15px; /* Add space between categories */
+  }
+
+  .dropdown-menu .container-fluid .col:last-child {
+    margin-bottom: 0; /* No margin after the last category */
+  }
+
+  .dropdown-menu h6 {
+    margin-bottom: 8px; /* Reduce space below category titles on mobile */
+  }
+
+  .dropdown-menu ul li {
+    padding: 3px 0; /* Adjust padding for list items */
+  }
+}
+
+/* Make sure the 'Menu' link itself is accessible when the mega menu is open */
+.nav-item.dropdown .nav-link.dropdown-toggle[aria-expanded="true"] {
+  color: var(--mc-green); /* Example: Change text color when active */
+  background-color: var(--mc-light-grey); /* Example: Add a background */
+  /* Add other styles as needed */
+}
+
+/* Footer styling (already present) */
+footer#contact {
+  background-color: var(--mc-green);
+  color: var(--mc-text-light);
+  padding: 1rem 0;
+}
+
+footer#contact a {
+  color: var(--mc-text-light);
+}
+  </style>
+</head>
+<body style="font-family: Georgia, 'Times New Roman', Times, serif;">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="home.html">
+        <img src="img/Logo.png" alt="Munch Cult Logo" class="me-2 logo-small rounded-circle" />
+        <strong>MunchCult</strong>
+      </a>
+      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon text-light"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active fw-bold" href="home.html">Home</a>
+          </li>
+
+          <!-- Mega Menu -->
+          <li class="nav-item dropdown position-static">
+            <a class="nav-link fw-bold dropdown-toggle" href="menu.html" id="megaMenu" role="button">Menu</a>
+            <div class="dropdown-menu">
+              <div class="container-fluid">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 text-start">
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Desi Food Categories</h6>
+                    <ul class="list-unstyled small">
+                      <li>Chicken Biryani</li>
+                      <li>Mutton Karahi</li>
+                      <li>Grilled Smoked Salmon</li>
+                      <li>Chapli Kabab</li>
+                      <li>Tandoori Tikka</li>
+                      <li>Prawn Biryani</li>
+                      <li>Prawns With Steak</li>
+                      <li>Siri Paye</li>
+                      <li>Chicken Kaleji</li>
+                      <li>Halwa Puri</li>
+                      <li>Palak Paneer</li>
+                      <li>Daal Chana</li>
+                      <li>Aloo Keema</li>
+                      <li>Haleem</li>
+                      <li>Seekh Kabab</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Popular Chinese Dishes</h6>
+                    <ul class="list-unstyled small">
+                      <li>Chicken Manchurian</li>
+                      <li>Golden Crunch Tempura</li>
+                      <li>Beef Chilli Dry</li>
+                      <li>Egg Fried Rice</li>
+                      <li>Chicken Shashlik</li>
+                      <li>Momos</li>
+                      <li>Chicken Chowmein</li>
+                      <li>Hot & Sour Soup</li>
+                      <li>Dynamite Shrimp</li>
+                      <li>Schezwan Rice</li>
+                      <li>Beef with Oyster Sauce</li>
+                      <li>Vegetable Spring Rolls</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Famous Italian Dishes</h6>
+                    <ul class="list-unstyled small">
+                      <li>Pepperoni Pizza</li>
+                      <li>Pappardelle Bolognese</li>
+                      <li>Creamy Alfredo Pasta</li>
+                      <li>Mushroom Risotto</li>
+                      <li>Bruschetta</li>
+                      <li>Lasagna</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Crispy Cravings</h6>
+                    <ul class="list-unstyled small">
+                      <li>Crispy Cheesy Sandwich</li>
+                      <li>Mozzarella Sticks</li>
+                      <li>Crispy Zinger Burger</li>
+                      <li>Fried Chicken</li>
+                      <li>Samosa</li>
+                      <li>Chicken Loaded Fries</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Special BBQ</h6>
+                    <ul class="list-unstyled small">
+                      <li>Chicken BBQ</li>
+                      <li>Grilled FInger Fish</li>
+                      <li>Grilled Lamb Chops</li>
+                      <li>BBQ Beef Ribs</li>
+                      <li>Spicy Grilled Prawns</li>
+                      <li>Grilled Smoked Salmon</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Flavoured Icecream</h6>
+                    <ul class="list-unstyled small">
+                      <li>Cup Icecream</li>
+                      <li>Cone Icecream</li>
+                      <li>Falooda Icecream</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Popular Desserts</h6>
+                    <ul class="list-unstyled small">
+                      <li>Molten Lava Cake</li>
+                      <li>New York Cheesecake</li>
+                      <li>Fudge Brownie with Ice Cream</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Cake Shake Bake</h6>
+                    <ul class="list-unstyled small">
+                      <li>Cup Cakes</li>
+                      <li>Macarons</li>
+                      <li>Birthday Cake</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Regular Drinks</h6>
+                    <ul class="list-unstyled small">
+                      <li>Coffee</li>
+                      <li>Kashmiri Kehwa</li>
+                      <li>Special Tea</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Special Drinks</h6>
+                    <ul class="list-unstyled small">
+                      <li>Mint Margarita</li>
+                      <li>Lemon Iced Tea</li>
+                      <li>Cold Coffee</li>
+                    </ul>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- About Us -->
+          <li class="nav-item">
+            <a class="nav-link fw-bold" href="about_us.html">About Us</a>
+          </li>
+
+          <!-- Contact Us -->
+          <li class="nav-item">
+            <a class="nav-link fw-bold" href="contact_us.html">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- Hero Section -->
+   
+ <header class="hero text-center py-5">
+  <div class="container" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+    <h1 class="display-3 fw-bold">Welcome to Munch Cult</h1>
+    <h3 class="mb-4"><b>"Feed the Crave. Join the Cult"</b></h3>
+    <a href="menu.html" class="btn btn-custom btn-lg">Explore Menu</a>
+  </div>
+</header>
+
+ <!-- About Section -->
+<section id="about" class="py-5 bg-light" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+  <div class="container">
+    <h2 class="text-center display-5 fw-bold section-title mb-5">The Spicy Tale of Four Friends</h2>
+
+    <div class="row align-items-center">
+      <div class="col-md-7 col-12">
+        <p class="lead text-start">
+          Munch Cult started one warm evening with four friends — Alishba, Javeria, Zainab, and Samita — united by their love for home-cooked food and memories.
+        </p>
+        <p class="lead text-start">
+          Alishba and Javeria grew up surrounded by the aroma of their grandmother’s various dishes, while Zainab and Samita lovingly grew and tended vegetables, herbs, and spices in a small garden—just like their grandmother used to do.
+        </p>
+        <p class="lead text-start">
+          One day, over simple rice and chutney, they realized that the love in every bite was too special to keep to themselves. They dreamed of creating a place where every dish feels like a warm hug from home.
+        </p>
+        <p class="lead text-start">
+          Munch Cult is more than a restaurant; it’s a community built on family flavors and stories. Whether you come for a quiet meal or a celebration, you’ll leave not just full, but warmly fulfilled.
+        </p>
+        <p class="lead text-start">
+          Come, join us at Munch Cult. Taste the love. Share the story. Become family.
+        </p>
+      </div>
+
+      <div class="col-md-5 col-12 text-center">
+        <img
+          src="https://i.etsystatic.com/33684972/r/il/3d24ac/3630470672/il_fullxfull.3630470672_3hn5.jpg"
+          alt="Four Friends Cooking Together"
+          class="img-fluid rounded shadow"
+          style="max-height: 400px; width: 100%; object-fit: cover;"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery Section -->  
+ 
+<section id="menu" class="py-3 bg-light">
+    <div class="container" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+      <h2 class="text-center display-5 fw-bold section-title mb-4">Our Gallery</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <img src="img/dinning.jpg" class="card-img-top menu-img" alt="Dinning">
+            <div class="card-body">
+              <h5 class="card-title">🍽️ Dining Experience</h5>
+              <p class="card-text">"At our restaurant, dining is not just about eating — it’s about experiencing joy, comfort, and flavor in every bite. From the warm ambiance and elegant décor to the attentive service and soothing background music, we offer a perfect setting for family dinners, romantic evenings, or casual gatherings with friends. Every meal is crafted to delight both your taste buds and your soul."</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <img src="img/chefs.jpg" class="card-img-top menu-img" alt="Chefs">
+            <div class="card-body">
+              <h5 class="card-title">👨‍🍳 Our Chefs </h5>
+              <p class="card-text">"Our team of chefs is the heart of our kitchen. With years of culinary experience and a deep passion for food, they bring creativity and excellence to every dish. From traditional favorites to modern fusion, our chefs use only the finest ingredients to ensure every plate is fresh, flavorful, and beautifully presented. Their love for cooking is reflected in every bite."</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <img src="img/resturant.jpg" class="card-img-top menu-img" alt="Resturant">
+            <div class="card-body">
+              <h5 class="card-title">🏠 About the Restaurant</h5>
+              <p class="card-text">"Munch Cult is more than just a place to eat — it’s a destination for food lovers. Founded with the vision to blend taste with hospitality, we take pride in serving delicious meals in a welcoming environment. Whether you're here for a quick lunch or a full-course dinner, we promise quality, taste, and an experience worth remembering."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+<!-- Reviews Section -->
+  <section id="reviews" class="py-5 text-center">
+    <div class="container" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+      <h2 class="display-5 fw-bold section-title mb-4">Customer Reviews</h2>
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-4">
+          <div class="card shadow-sm p-3 text-start">
+            <div class="d-flex align-items-center mb-2">
+              <img src="img/Review 3.jpg" class="review-img me-3" alt="Reviewer">
+              <h5 class="mb-0">Muhammad Irtisaam </h5>
+            </div>
+            <p>"I ordered the Chicken Manchurian with egg fried rice and it was absolutely delicious. The flavors were rich and well-balanced, with just the right amount of spice. It tasted like something you'd get at a high-end Chinese restaurant!"</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card shadow-sm p-3 text-start">
+            <div class="d-flex align-items-center mb-2">
+              <img src="img/Review 1.jpg" class="review-img me-3" alt="Reviewer">
+              <h5 class="mb-0">Zaisha Khan</h5>
+            </div>
+            <p>"Their BBQ platter was an explosion of smoky flavor! The chicken was perfectly grilled, juicy, and full of seasoning. A perfect option for meat lovers — I’m definitely bringing my friends next time."</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card shadow-sm p-3 text-start">
+            <div class="d-flex align-items-center mb-2">
+              <img src="img/Review 2.jpg" class="review-img me-3" alt="Reviewer">
+              <h5 class="mb-0">M. Zaviyaar Armaghan</h5>
+            </div>
+            <p>"I tried the Cup Icecream after dinner, and honestly, it was the creamiest treat I’ve had in a long time. The mango and chocolate flavors were heavenly. MunchCult knows how to serve dessert right!"</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card shadow-sm p-3 text-start">
+            <div class="d-flex align-items-center mb-2">
+              <img src="img/Review 4.jpg" style="height: 130px; width: 130px;" class="review-img me-3" alt="Reviewer">
+              <h5 class="mb-0">Syeda Zimal Mukhtiaar</h5>
+            </div>
+            <p>"Lasagna is one of my favorite dishes, and MunchCult nailed it. The layers were full of meat and cheese with a perfectly baked top. It tasted like a warm hug — total co</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card shadow-sm p-3 text-start">
+            <div class="d-flex align-items-center mb-2">
+              <img src="img/Rewiew 5.jpg" style="height: 130px; width: 130px;" class="review-img me-3" alt="Reviewer">
+              <h5 class="mb-0">Muhammad Hadii Zayan</h5>
+            </div>
+            <p>"We ordered cupcakes and macarons for my sister’s birthday and they were not only beautifully presented but super tasty too! Soft, sweet, and fresh — the perfect addition to any celebration."</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card shadow-sm p-3 text-start">
+            <div class="d-flex align-items-center mb-2">
+              <img src="img/Review 6.png" style="height: 130px; width: 130px;" class="review-img me-3" alt="Reviewer">
+              <h5 class="mb-0">Zunaishaa Fatima</h5>
+            </div>
+            <p>"I was amazed by their drinks section! The Mint Margarita was icy and fresh, and the Cold Coffee had just the right kick. I felt like I was sitting in a 5-star café!"</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card shadow-sm p-3 text-start">
+            <div class="d-flex align-items-center mb-2">
+              <img src="img/Review 7.jpg" style="height: 130px; width: 130px;" class="review-img me-3" alt="Reviewer">
+              <h5 class="mb-0">Muhammad Irtiza</h5>
+            </div>
+            <p>"Chicken Biryani is a classic, and MunchCult's version took me straight back to traditional flavors. The spices were perfect and the portion size was great for the price."</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card shadow-sm p-3 text-start">
+            <div class="d-flex align-items-center mb-2">
+              <img src="img/Review 8.jpeg" style="height: 130px; width: 130px;" class="review-img me-3" alt="Reviewer">
+              <h5 class="mb-0">Noor e Haram</h5>
+            </div>
+            <p>"Dynamite Shrimp blew me away! Crunchy on the outside, tender inside, and the sauce was fire! A must-try starter if you're looking for bold flavor and presentation."</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card shadow-sm p-3 text-start">
+            <div class="d-flex align-items-center mb-2">
+              <img src="img/Rewiew 9.jpg" style="height: 130px; width: 130px;" class="review-img me-3" alt="Reviewer">
+              <h5 class="mb-0">MUhammad Murtaza</h5>
+            </div>
+            <p>"I loved everything about MunchCult — from the ambiance to the food and service. We tried Chapli Kabab, Creamy Pasta, and Molten Lava Cake — each dish better than the last!"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+
+  <!-- Services Section -->
+<section id="services" class="py-5 text-center services-section">
+  <div class="container" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+    <h2 class="display-5 fw-bold section-title mb-4" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Our Services</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="bi bi-house-door-fill"></i>
+          </div>
+          <h3 class="service-title">Dine-In</h3>
+          <p class="service-description">Enjoy a cozy atmosphere with our delicious meals served fresh.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="bi bi-basket-fill"></i>
+          </div>
+          <h3 class="service-title">Takeaway</h3>
+          <p class="service-description">Quick and easy takeaway options for your convenience.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="bi bi-truck"></i>
+          </div>
+          <h3 class="service-title">Delivery</h3>
+          <p class="service-description">Fast and reliable delivery right to your doorstep.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="bi bi-calendar-event"></i>
+          </div>
+          <h3 class="service-title">Catering</h3>
+          <p class="service-description">Professional catering services for all your events.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="bi bi-people-fill"></i>
+          </div>
+          <h3 class="service-title">Event Hosting</h3>
+          <p class="service-description">Host your special events with us for an unforgettable experience.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container text-center">
+      <img src="img/Logo.png"
+     alt="Munch Cult Logo" 
+     class="mb-2 rounded-circle" 
+     style="width: 80px; height: 80px; object-fit: cover;" />
+      <p class="mb-1 fw-bold">Munch Cult</p>
+      <p class="mb-2">Serving Flavor with Passion</p>
+      <div class="mb-2">
+        <a href="https://www.instagram.com/_dinx_pvt_430/#" class="me-3 fs-4"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/m-dinesh-d30/" class="me-3 fs-4"><i class="bi bi-instagram"></i></a>
+        <a href="mailto:contact@munchcult.com" class="fs-4"><i class="bi bi-envelope-fill"></i></a>
+      </div>
+      <small>&copy; 2025 Munch Cult. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FoodieHub430 - Savor the Flavor</title>
+  <link rel="icon" type="image/png" href="img/Logo.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <style>
+    :root {
+      --primary: #E74C3C;
+      --secondary: #F39C12;
+      --accent: #F5D76E;
+      --neutral: #F9F9F9;
+      --dark: #2C3E50;
+      --green: #28a745;
+      --green-hover: #218838;
+      --mc-green: #E74C3C;
+      --mc-green-hover: #C0392B;
+      --mc-text-light: #F9F9F9;
+    }
+
+    body {
+      background-color: var(--neutral);
+      color: var(--dark);
+    }
+
+    .logo-small {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+    }
+
+    .navbar {
+      background-color: var(--dark);
+    }
+
+    .navbar-brand, .nav-link {
+      color: var(--mc-text-light) !important;
+    }
+
+    .nav-link:hover {
+      color: #a7f3d0 !important;
+    }
+
+
+    .btn-custom {
+      background-color: var(--green);
+      color: #fff;
+    }
+
+    .btn-custom:hover {
+      background-color: var(--green-hover);
+    }
+
+    .section-title {
+      color: var(--primary);
+    }
+
+    .menu-img {
+      height: 250px;
+      object-fit: cover;
+    }
+/* Mega Menu Styling */
+.nav-item.position-static .dropdown-menu {
+  left: 50% !important;
+  transform: translateX(-50%);
+  width: 90vw; /* Default for larger screens */
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  display: none;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.nav-item.dropdown:hover .dropdown-menu,
+.nav-item.dropdown.show .dropdown-menu { /* Added .show for robustness with JS toggling */
+  display: block;
+}
+
+.dropdown-menu ul li:hover {
+  transform: translateX(5px);
+  transition: 0.3s;
+  color: var(--mc-green);
+  cursor: pointer;
+}
+
+/* --- Responsive Adjustments for Mega Menu --- */
+
+/* For devices smaller than 1200px (Bootstrap's 'xl' breakpoint) */
+@media (max-width: 1199.98px) {
+  .nav-item.position-static .dropdown-menu {
+    width: 95vw; /* Slightly wider on larger tablets/smaller desktops */
+  }
+}
+
+/* For devices smaller than 992px (Bootstrap's 'lg' breakpoint - common for tablets) */
+@media (max-width: 991.98px) {
+  .nav-item.position-static .dropdown-menu {
+    width: 98vw; /* Almost full width on tablets */
+    padding: 15px;
+  }
+}
+
+/* For devices smaller than 768px (Bootstrap's 'md' breakpoint - common for mobile phones) */
+@media (max-width: 767.98px) {
+  .nav-item.position-static .dropdown-menu {
+    left: 0 !important; /* Align to the left edge of the viewport */
+    transform: translateX(0); /* Remove the horizontal centering */
+    width: 100%; /* Take full width of the screen */
+    border-radius: 0; /* Remove rounded corners for a full-width look */
+    padding: 10px;
+    box-shadow: none; /* Lighter or no shadow for mobile */
+    position: absolute; /* Keep it positioned relative to its parent nav-item */
+    top: auto; /* Let it flow naturally, or set a specific top if overlay */
+    max-height: calc(100vh - var(--navbar-height, 56px)); /* Make it scrollable and fit screen, assuming a navbar height */
+  }
+
+  /* Ensure columns stack on mobile */
+  .dropdown-menu .container-fluid .row {
+    flex-direction: column; /* Stacks all columns vertically */
+  }
+
+  .dropdown-menu .container-fluid .col {
+    width: 100%; /* Each category takes full width */
+    margin-bottom: 15px; /* Add space between categories */
+  }
+
+  .dropdown-menu .container-fluid .col:last-child {
+    margin-bottom: 0; /* No margin after the last category */
+  }
+
+  .dropdown-menu h6 {
+    margin-bottom: 8px; /* Reduce space below category titles on mobile */
+  }
+
+  .dropdown-menu ul li {
+    padding: 3px 0; /* Adjust padding for list items */
+  }
+}
+
+/* Make sure the 'Menu' link itself is accessible when the mega menu is open */
+.nav-item.dropdown .nav-link.dropdown-toggle[aria-expanded="true"] {
+  color: var(--mc-green); /* Example: Change text color when active */
+  background-color: var(--mc-light-grey); /* Example: Add a background */
+  /* Add other styles as needed */
+}
+
+/* Footer styling (already present) */
+footer#contact {
+  background-color: var(--dark);
+  color: var(--mc-text-light);
+  padding: 1rem 0;
+}
+
+footer#contact a {
+  color: var(--mc-text-light);
+}
+  </style>
+</head>
+<body style="font-family: Georgia, 'Times New Roman', Times, serif;">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="home.html">
+        <img src="img/Logo.png" alt="FoodieHub430 Logo" class="me-2 logo-small rounded-circle" />
+        <strong>FoodieHub430</strong>
+      </a>
+      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon text-light"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active fw-bold" href="home.html">Home</a>
+          </li>
+
+          <!-- Mega Menu -->
+          <li class="nav-item dropdown position-static">
+            <a class="nav-link fw-bold dropdown-toggle" href="#" id="megaMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">Menu</a>
+            <div class="dropdown-menu">
+              <div class="container-fluid">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 text-start">
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Desi Food Categories</h6>
+                    <ul class="list-unstyled small">
+                      <li>Chicken Biryani</li>
+                      <li>Mutton Karahi</li>
+                      <li>Grilled Smoked Salmon</li>
+                      <li>Chapli Kabab</li>
+                      <li>Tandoori Tikka</li>
+                      <li>Prawn Biryani</li>
+                      <li>Prawns With Steak</li>
+                      <li>Siri Paye</li>
+                      <li>Chicken Kaleji</li>
+                      <li>Halwa Puri</li>
+                      <li>Palak Paneer</li>
+                      <li>Daal Chana</li>
+                      <li>Aloo Keema</li>
+                      <li>Haleem</li>
+                      <li>Seekh Kabab</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Popular Chinese Dishes</h6>
+                    <ul class="list-unstyled small">
+                      <li>Chicken Manchurian</li>
+                      <li>Golden Crunch Tempura</li>
+                      <li>Beef Chilli Dry</li>
+                      <li>Egg Fried Rice</li>
+                      <li>Chicken Shashlik</li>
+                      <li>Momos</li>
+                      <li>Chicken Chowmein</li>
+                      <li>Hot & Sour Soup</li>
+                      <li>Dynamite Shrimp</li>
+                      <li>Schezwan Rice</li>
+                      <li>Beef with Oyster Sauce</li>
+                      <li>Vegetable Spring Rolls</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Famous Italian Dishes</h6>
+                    <ul class="list-unstyled small">
+                      <li>Pepperoni Pizza</li>
+                      <li>Pappardelle Bolognese</li>
+                      <li>Creamy Alfredo Pasta</li>
+                      <li>Mushroom Risotto</li>
+                      <li>Bruschetta</li>
+                      <li>Lasagna</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Crispy Cravings</h6>
+                    <ul class="list-unstyled small">
+                      <li>Crispy Cheesy Sandwich</li>
+                      <li>Mozzarella Sticks</li>
+                      <li>Crispy Zinger Burger</li>
+                      <li>Fried Chicken</li>
+                      <li>Samosa</li>
+                      <li>Chicken Loaded Fries</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Special BBQ</h6>
+                    <ul class="list-unstyled small">
+                      <li>Chicken BBQ</li>
+                      <li>Grilled FInger Fish</li>
+                      <li>Grilled Lamb Chops</li>
+                      <li>BBQ Beef Ribs</li>
+                      <li>Spicy Grilled Prawns</li>
+                      <li>Grilled Smoked Salmon</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Flavoured Icecream</h6>
+                    <ul class="list-unstyled small">
+                      <li>Cup Icecream</li>
+                      <li>Cone Icecream</li>
+                      <li>Falooda Icecream</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Popular Desserts</h6>
+                    <ul class="list-unstyled small">
+                      <li>Molten Lava Cake</li>
+                      <li>New York Cheesecake</li>
+                      <li>Fudge Brownie with Ice Cream</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Cake Shake Bake</h6>
+                    <ul class="list-unstyled small">
+                      <li>Cup Cakes</li>
+                      <li>Macarons</li>
+                      <li>Birthday Cake</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Regular Drinks</h6>
+                    <ul class="list-unstyled small">
+                      <li>Coffee</li>
+                      <li>Kashmiri Kehwa</li>
+                      <li>Special Tea</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Special Drinks</h6>
+                    <ul class="list-unstyled small">
+                      <li>Mint Margarita</li>
+                      <li>Lemon Iced Tea</li>
+                      <li>Cold Coffee</li>
+                    </ul>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- About Us -->
+          <li class="nav-item">
+            <a class="nav-link fw-bold" href="about_us.html">About Us</a>
+          </li>
+
+          <!-- Contact Us -->
+          <li class="nav-item">
+            <a class="nav-link fw-bold" href="contact_us.html">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Order Form Section -->
+  <div class="order-form-section">
+    <div class="container my-5 py-5">
+      <h2 class="text-center display-5 fw-bold section-title mb-5">Place Your Order</h2>
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+          <p class="text-center mb-4">
+            Please fill out the form below with your order details. Our team will contact you shortly to confirm and process your order.
+          </p>
+          <form id="orderForm" action="#" method="POST"> 
+            <div class="mb-3">
+              <label for="fullName" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="fullName" name="fullName" required>
+            </div>
+            <div class="mb-3">
+              <label for="phoneNumber" class="form-label">Phone Number</label>
+              <input type="tel" name="phoneNumber" class="form-control" id="phoneNumber" required>
+            </div>
+            <div class="mb-3">
+              <label for="deliveryAddress" class="form-label">Delivery Address</label>
+              <textarea class="form-control" id="deliveryAddress" name="deliveryAddress" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="orderItems" class="form-label">Your Order (Please list items and quantities)</label>
+              <textarea class="form-control" id="orderItems" name="orderItems" rows="5" placeholder="e.g., 1x Chicken Biryani, 2x Pepperoni Pizza, 1x Mint Mojito" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="specialInstructions" class="form-label">Special Instructions (Optional)</label>
+              <textarea class="form-control" id="specialInstructions" name="specialInstructions" rows="3" placeholder="e.g., No onions in burger, extra spicy biryani"></textarea>
+            </div>
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-success btn-lg">Submit Order</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container text-center">
+      <img src="img/Logo.png"
+        alt="FoodieHub430 Logo" 
+        class="mb-2 rounded-circle" 
+        style="width: 80px; height: 80px; object-fit: cover;" />
+      <p class="mb-1 fw-bold">FoodieHub430</p>
+      <p class="mb-2">Serving Flavor with Passion</p>
+      <div class="mb-2">
+        <a href="https://www.instagram.com/_dinx_pvt_430/#" class="me-3 fs-4"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/m-dinesh-d30/" class="me-3 fs-4"><i class="bi bi-linkedin"></i></a>
+        <a href="mailto:m.dinesh.it27@gmail.com.com" class="fs-4"><i class="bi bi-envelope-fill"></i></a>
+      </div>
+      <small>&copy; 2025 FoodieHub430. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const orderForm = document.getElementById('orderForm');
+
+      orderForm.addEventListener('submit', function(event) {
+        event.preventDefault(); 
+
+        const fullName = document.getElementById('fullName').value;
+        const orderItems = document.getElementById('orderItems').value;
+
+        alert(`Thank you, ${fullName}! Your order for:\n\n${orderItems}\n\nhas been placed successfully. Our team will contact you shortly to confirm.`);
+
+        orderForm.reset();
+      });
+    });
+
+    // Custom menu dropdown functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const megaMenu = document.getElementById('megaMenu');
+      
+      // Handle click on menu link
+      megaMenu.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Toggle dropdown
+        const dropdown = new bootstrap.Dropdown(megaMenu);
+        dropdown.toggle();
+      });
+      
+      // Optional: Add navigation to menu page on double-click
+      megaMenu.addEventListener('dblclick', function(e) {
+        window.location.href = 'menu.html';
+      });
+    });
+  </script>
+
+</body>
+</html>

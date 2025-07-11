@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
+  <title>FoodieHub430 - Savor the Flavor</title>
+  <link rel="icon" type="image/png" href="img/Logo.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <style>
+    :root {
+      --primary: #E74C3C;
+      --secondary: #F39C12;
+      --accent: #F5D76E;
+      --neutral: #F9F9F9;
+      --dark: #2C3E50;
+      --green: #28a745;
+      --green-hover: #218838;
+      --mc-green: #E74C3C;
+      --mc-green-hover: #C0392B;
+      --mc-text-light: #F9F9F9;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--neutral);
+      color: var(--dark);
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      position: relative;
+    }
+
+    /* Container fixes */
+    .container, .container-fluid {
+      width: 100%;
+      max-width: 100%;
+      padding-right: 15px;
+      padding-left: 15px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    /* Navbar fixes */
+    .navbar {
+      background-color: var(--dark);
+      padding: 0.5rem 1rem;
+    }
+
+    .navbar-brand, .nav-link {
+      color: var(--mc-text-light) !important;
+    }
+
+    .nav-link:hover {
+      color: #a7f3d0 !important;
+    }
+
+    .logo-small {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+    }
+
+    /* Main content area */
+    .main-content {
+      margin-top: 80px; /* Account for fixed navbar */
+      width: 100%;
+      overflow: hidden;
+    }
+
+    /* Contact form section */
+    .contact-section {
+      padding: 20px 0;
+    }
+
+    .contact-section .row {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .contact-section .col-md-6 {
+      padding: 20px;
+    }
+
+    /* Form styling */
+    #contactForm {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    /* Reservation section */
+    .reservation-section {
+      position: relative;
+      width: 100vw;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      overflow: hidden;
+    }
+
+    .reservation-image {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .reservation-button-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      text-align: center;
+    }
+
+    /* Mega Menu Styling */
+    .nav-item.position-static .dropdown-menu {
+      left: 50% !important;
+      transform: translateX(-50%);
+      width: 100vw;
+      max-width: 1200px;
+      border-radius: 0;
+      background-color: #fff;
+      padding: 15px;
+      border: 1px solid #ddd;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      display: none;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    .nav-item.dropdown:hover .dropdown-menu,
+    .nav-item.dropdown.show .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-menu ul li:hover {
+      transform: translateX(5px);
+      transition: 0.3s;
+      color: var(--mc-green);
+      cursor: pointer;
+    }
+
+    /* Footer styling */
+    footer#contact {
+      background-color: var(--dark);
+      color: var(--mc-text-light);
+      padding: 1.5rem 0;
+      width: 100%;
+    }
+
+    footer#contact a {
+      color: var(--mc-text-light);
+    }
+
+    /* Mobile-specific fixes */
+    @media (max-width: 767.98px) {
+      body {
+        font-size: 14px;
+      }
+
+      .navbar {
+        padding: 0.5rem;
+      }
+
+      .main-content {
+        margin-top: 60px;
+      }
+
+      .contact-section .col-md-6 {
+        padding: 15px;
+      }
+
+      .nav-item.position-static .dropdown-menu {
+        left: 0 !important;
+        transform: translateX(0);
+        width: 100vw;
+        border-radius: 0;
+        padding: 10px;
+        position: fixed;
+        top: 60px;
+        max-height: calc(100vh - 60px);
+      }
+
+      .dropdown-menu .container-fluid .row {
+        flex-direction: column;
+      }
+
+      .dropdown-menu .container-fluid .col {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .reservation-button-container .btn {
+        width: 90%;
+        padding: 10px;
+        font-size: 1rem;
+      }
+
+      footer#contact {
+        padding: 1rem 0;
+      }
+    }
+
+    /* Tablet-specific fixes */
+    @media (min-width: 768px) and (max-width: 991.98px) {
+      .nav-item.position-static .dropdown-menu {
+        width: 95vw;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="home.html">
+        <img src="img/Logo.png" alt="FoodieHub430 Logo" class="me-2 logo-small rounded-circle" />
+        <strong>FoodieHub430</strong>
+      </a>
+      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon text-light"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active fw-bold" href="home.html">Home</a>
+          </li>
+
+          <!-- Mega Menu -->
+          <li class="nav-item dropdown position-static">
+            <a class="nav-link fw-bold dropdown-toggle" href="#" id="megaMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">Menu</a>
+            <div class="dropdown-menu">
+              <div class="container-fluid">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 text-start">
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Desi Food Categories</h6>
+                    <ul class="list-unstyled small">
+                      <li>Chicken Biryani</li>
+                      <li>Mutton Karahi</li>
+                      <li>Grilled Smoked Salmon</li>
+                      <li>Chapli Kabab</li>
+                      <li>Tandoori Tikka</li>
+                      <li>Prawn Biryani</li>
+                      <li>Prawns With Steak</li>
+                      <li>Siri Paye</li>
+                      <li>Chicken Kaleji</li>
+                      <li>Halwa Puri</li>
+                      <li>Palak Paneer</li>
+                      <li>Daal Chana</li>
+                      <li>Aloo Keema</li>
+                      <li>Haleem</li>
+                      <li>Seekh Kabab</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Popular Chinese Dishes</h6>
+                    <ul class="list-unstyled small">
+                      <li>Chicken Manchurian</li>
+                      <li>Golden Crunch Tempura</li>
+                      <li>Beef Chilli Dry</li>
+                      <li>Egg Fried Rice</li>
+                      <li>Chicken Shashlik</li>
+                      <li>Momos</li>
+                      <li>Chicken Chowmein</li>
+                      <li>Hot & Sour Soup</li>
+                      <li>Dynamite Shrimp</li>
+                      <li>Schezwan Rice</li>
+                      <li>Beef with Oyster Sauce</li>
+                      <li>Vegetable Spring Rolls</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Famous Italian Dishes</h6>
+                    <ul class="list-unstyled small">
+                      <li>Pepperoni Pizza</li>
+                      <li>Pappardelle Bolognese</li>
+                      <li>Creamy Alfredo Pasta</li>
+                      <li>Mushroom Risotto</li>
+                      <li>Bruschetta</li>
+                      <li>Lasagna</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Crispy Cravings</h6>
+                    <ul class="list-unstyled small">
+                      <li>Crispy Cheesy Sandwich</li>
+                      <li>Mozzarella Sticks</li>
+                      <li>Crispy Zinger Burger</li>
+                      <li>Fried Chicken</li>
+                      <li>Samosa</li>
+                      <li>Chicken Loaded Fries</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Special BBQ</h6>
+                    <ul class="list-unstyled small">
+                      <li>Chicken BBQ</li>
+                      <li>Grilled FInger Fish</li>
+                      <li>Grilled Lamb Chops</li>
+                      <li>BBQ Beef Ribs</li>
+                      <li>Spicy Grilled Prawns</li>
+                      <li>Grilled Smoked Salmon</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Flavoured Icecream</h6>
+                    <ul class="list-unstyled small">
+                      <li>Cup Icecream</li>
+                      <li>Cone Icecream</li>
+                      <li>Falooda Icecream</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Popular Desserts</h6>
+                    <ul class="list-unstyled small">
+                      <li>Molten Lava Cake</li>
+                      <li>New York Cheesecake</li>
+                      <li>Fudge Brownie with Ice Cream</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Cake Shake Bake</h6>
+                    <ul class="list-unstyled small">
+                      <li>Cup Cakes</li>
+                      <li>Macarons</li>
+                      <li>Birthday Cake</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Regular Drinks</h6>
+                    <ul class="list-unstyled small">
+                      <li>Coffee</li>
+                      <li>Kashmiri Kehwa</li>
+                      <li>Special Tea</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Special Drinks</h6>
+                    <ul class="list-unstyled small">
+                      <li>Mint Margarita</li>
+                      <li>Lemon Iced Tea</li>
+                      <li>Cold Coffee</li>
+                    </ul>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- About Us -->
+          <li class="nav-item">
+            <a class="nav-link fw-bold" href="about_us.html">About Us</a>
+          </li>
+
+          <!-- Contact Us -->
+          <li class="nav-item">
+            <a class="nav-link fw-bold" href="contact_us.html">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="contact-section">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-6">
+            <p class="lead">Get In Touch</p>
+            <p>
+              For inquiries or to secure a reservation, the FoodieHub430 team is at your service.
+              Please utilize the provided contact information or submit your message through our online form.
+              We are dedicated to providing prompt assistance and anticipate the pleasure of connecting with you.
+            </p>
+            <p class="lead">Come enjoy our freshly made dishes every day from 12 PM to 12 AM</p>
+          </div>
+
+          <div class="col-md-6">
+            <h4>Your Details</h4>
+            <form id="contactForm" method="post">
+              <div class="mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" name="name" class="form-control" id="name" required>
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" name="email" class="form-control" id="email" required>
+              </div>
+              <div class="mb-3">
+                <label for="comment" class="form-label">Comments / Questions</label>
+                <textarea name="comment" class="form-control" id="comment" rows="4" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-success fw-bold">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reservation Section - Full width with no white space -->
+    <div class="reservation-section">
+      <img src="img/Reservation.jpg" class="reservation-image" alt="Reservation">
+      <div class="reservation-button-container">
+        <a href="Reservation.html" class="btn btn-success btn-lg">Reserve A Table Now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container text-center">
+      <img src="img/Logo.png" alt="FoodieHub430 Logo" class="mb-2 rounded-circle" style="width: 80px; height: 80px; object-fit: cover;" />
+      <p class="mb-1 fw-bold">FoodieHub430</p>
+      <p class="mb-2">Serving Flavor with Passion</p>
+      <div class="mb-2">
+        <a href="https://www.instagram.com/_dinx_pvt_430/#" class="me-3 fs-4"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/m-dinesh-d30/" class="me-3 fs-4"><i class="bi bi-linkedin"></i></a>
+        <a href="mailto:m.dinesh.it27@gmail.com.com" class="fs-4"><i class="bi bi-envelope-fill"></i></a>
+      </div>
+      <small>&copy; 2025 FoodieHub430. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+  document.querySelector("form").addEventListener("submit", function (e) {
+    if (!this.checkValidity()) {
+      e.preventDefault(); 
+      alert("Please fill out all required fields before submitting.");
+    } else {
+      alert("Your Comments / Question has been submitted.");
+    }
+  });
+
+  // Custom menu dropdown functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const megaMenu = document.getElementById('megaMenu');
+    
+    // Handle click on menu link
+    megaMenu.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Toggle dropdown
+      const dropdown = new bootstrap.Dropdown(megaMenu);
+      dropdown.toggle();
+    });
+    
+    // Optional: Add navigation to menu page on double-click
+    megaMenu.addEventListener('dblclick', function(e) {
+      window.location.href = 'menu.html';
+    });
+  });
+  </script>
+
+</body>
+</html>

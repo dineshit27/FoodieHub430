@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MunchCult - Savor the Flavor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --mc-green: #14532d;
+            --mc-green-hover: #0f3b23;
+            --mc-text-light: #f7fefc;
+        }
+
+        /* Full height layout styles */
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            background-color: #f7fefc;
+            color: #1a1a1a;
+            display: flex; /* Makes the body a flex container */
+            flex-direction: column; /* Stacks children vertically */
+        }
+
+        main {
+            flex-grow: 1; /* Allows the main content to grow and push the footer down */
+        }
+        /* End of full height layout styles */
+
+
+        .logo-small {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+        }
+
+        .navbar {
+            background-color: var(--mc-green);
+        }
+
+        .navbar-brand,
+        .nav-link {
+            color: var(--mc-text-light) !important;
+        }
+
+        .nav-link:hover {
+            color: #a7f3d0 !important;
+        }
+
+        .btn-custom {
+            background-color: var(--mc-green);
+            color: #fff;
+        }
+
+        .btn-custom:hover {
+            background-color: var(--mc-green-hover);
+        }
+
+        .section-title {
+            color: var(--mc-green);
+        }
+
+        .menu-img {
+            height: 250px;
+            object-fit: cover;
+        }
+
+        footer#contact {
+            background-color: var(--mc-green);
+            color: var(--mc-text-light);
+            padding: 1rem 0;
+            margin-top: auto; /* Pushes the footer to the bottom in a flex container */
+        }
+
+        footer#contact a {
+            color: var(--mc-text-light);
+        }
+
+/* Mega Menu Styling */
+.nav-item.position-static .dropdown-menu {
+  left: 50% !important;
+  transform: translateX(-50%);
+  width: 90vw; /* Default for larger screens */
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  display: none;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.nav-item.dropdown:hover .dropdown-menu,
+.nav-item.dropdown.show .dropdown-menu { /* Added .show for robustness with JS toggling */
+  display: block;
+}
+
+.dropdown-menu ul li:hover {
+  transform: translateX(5px);
+  transition: 0.3s;
+  color: var(--mc-green);
+  cursor: pointer;
+}
+
+/* --- Responsive Adjustments for Mega Menu --- */
+
+/* For devices smaller than 1200px (Bootstrap's 'xl' breakpoint) */
+@media (max-width: 1199.98px) {
+  .nav-item.position-static .dropdown-menu {
+    width: 95vw; /* Slightly wider on larger tablets/smaller desktops */
+  }
+}
+
+/* For devices smaller than 992px (Bootstrap's 'lg' breakpoint - common for tablets) */
+@media (max-width: 991.98px) {
+  .nav-item.position-static .dropdown-menu {
+    width: 98vw; /* Almost full width on tablets */
+    padding: 15px;
+  }
+}
+
+/* For devices smaller than 768px (Bootstrap's 'md' breakpoint - common for mobile phones) */
+@media (max-width: 767.98px) {
+  .nav-item.position-static .dropdown-menu {
+    left: 0 !important; /* Align to the left edge of the viewport */
+    transform: translateX(0); /* Remove the horizontal centering */
+    width: 100%; /* Take full width of the screen */
+    border-radius: 0; /* Remove rounded corners for a full-width look */
+    padding: 10px;
+    box-shadow: none; /* Lighter or no shadow for mobile */
+    position: absolute; /* Keep it positioned relative to its parent nav-item */
+    top: auto; /* Let it flow naturally, or set a specific top if overlay */
+    max-height: calc(100vh - var(--navbar-height, 56px)); /* Make it scrollable and fit screen, assuming a navbar height */
+  }
+
+  /* Ensure columns stack on mobile */
+  .dropdown-menu .container-fluid .row {
+    flex-direction: column; /* Stacks all columns vertically */
+  }
+
+  .dropdown-menu .container-fluid .col {
+    width: 100%; /* Each category takes full width */
+    margin-bottom: 15px; /* Add space between categories */
+  }
+
+  .dropdown-menu .container-fluid .col:last-child {
+    margin-bottom: 0; /* No margin after the last category */
+  }
+
+  .dropdown-menu h6 {
+    margin-bottom: 8px; /* Reduce space below category titles on mobile */
+  }
+
+  .dropdown-menu ul li {
+    padding: 3px 0; /* Adjust padding for list items */
+  }
+}
+
+/* Make sure the 'Menu' link itself is accessible when the mega menu is open */
+.nav-item.dropdown .nav-link.dropdown-toggle[aria-expanded="true"] {
+  color: var(--mc-green); /* Example: Change text color when active */
+  background-color: var(--mc-light-grey); /* Example: Add a background */
+  /* Add other styles as needed */
+}
+
+/* Footer styling (already present) */
+footer#contact {
+  background-color: var(--mc-green);
+  color: var(--mc-text-light);
+  padding: 1rem 0;
+}
+
+footer#contact a {
+  color: var(--mc-text-light);
+}
+    </style>
+</head>
+<body style="font-family: Georgia, 'Times New Roman', Times, serif;">
+
+   <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="home.html">
+        <img src="img/Logo.png" alt="Munch Cult Logo" class="me-2 logo-small rounded-circle" />
+        <strong>MunchCult</strong>
+      </a>
+      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon text-light"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active fw-bold" href="home.html">Home</a>
+          </li>
+
+          <!-- Mega Menu -->
+          <li class="nav-item dropdown position-static">
+            <a class="nav-link fw-bold dropdown-toggle" href="menu.html" id="megaMenu" role="button">Menu</a>
+            <div class="dropdown-menu">
+              <div class="container-fluid">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 text-start">
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Desi Food Categories</h6>
+                    <ul class="list-unstyled small">
+                      <li>Chicken Biryani</li>
+                      <li>Mutton Karahi</li>
+                      <li>Grilled Smoked Salmon</li>
+                      <li>Chapli Kabab</li>
+                      <li>Tandoori Tikka</li>
+                      <li>Prawn Biryani</li>
+                      <li>Prawns With Steak</li>
+                      <li>Siri Paye</li>
+                      <li>Chicken Kaleji</li>
+                      <li>Halwa Puri</li>
+                      <li>Palak Paneer</li>
+                      <li>Daal Chana</li>
+                      <li>Aloo Keema</li>
+                      <li>Haleem</li>
+                      <li>Seekh Kabab</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Popular Chinese Dishes</h6>
+                    <ul class="list-unstyled small">
+                      <li>Chicken Manchurian</li>
+                      <li>Golden Crunch Tempura</li>
+                      <li>Beef Chili Dry</li>
+                      <li>Egg Fried Rice</li>
+                      <li>Chicken Shashlik</li>
+                      <li>Momos</li>
+                      <li>Chicken Chowmein</li>
+                      <li>Hot & Sour Soup</li>
+                      <li>Dynamite Shrimp</li>
+                      <li>Schezwan Rice</li>
+                      <li>Beef with Oyster Sauce</li>
+                      <li>Vegetable Spring Rolls</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Famous Italian Dishes</h6>
+                    <ul class="list-unstyled small">
+                      <li>Pepperoni Pizza</li>
+                      <li>Pappardelle Bolognese</li>
+                      <li>Creamy Alfredo Pasta</li>
+                      <li>Mushroom Risotto</li>
+                      <li>Bruschetta</li>
+                      <li>Lasagna</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Crispy Cravings</h6>
+                    <ul class="list-unstyled small">
+                      <li>Crispy Cheesy Sandwich</li>
+                      <li>Mozzarella Sticks</li>
+                      <li>Crispy Zinger Burger</li>
+                      <li>Fried Chicken</li>
+                      <li>Samosa</li>
+                      <li>Chicken Loaded Fries</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Special BBQ</h6>
+                    <ul class="list-unstyled small">
+                      <li>Chicken BBQ</li>
+                      <li>Grilled FInger Fish</li>
+                      <li>Grilled Lamb Chops</li>
+                      <li>BBQ Beef Ribs</li>
+                      <li>Spicy Grilled Prawns</li>
+                      <li>Grilled Smoked Salmon</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Flavoured Icecream</h6>
+                    <ul class="list-unstyled small">
+                      <li>Cup Icecream</li>
+                      <li>Cone Icecream</li>
+                      <li>Falooda Icecream</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Popular Desserts</h6>
+                    <ul class="list-unstyled small">
+                      <li>Molten Lava Cake</li>
+                      <li>New York Cheesecake</li>
+                      <li>Fudge Brownie with Ice Cream</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Cake Shake Bake</h6>
+                    <ul class="list-unstyled small">
+                      <li>Cup Cakes</li>
+                      <li>Macarons</li>
+                      <li>Birthday Cake</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Regular Drinks</h6>
+                    <ul class="list-unstyled small">
+                      <li>Coffee</li>
+                      <li>Kashmiri Kehwa</li>
+                      <li>Special Tea</li>
+                    </ul>
+                  </div>
+
+                  <div class="col">
+                    <h6 class="fw-bold text-uppercase text-success">Special Drinks</h6>
+                    <ul class="list-unstyled small">
+                      <li>Mint Margarita</li>
+                      <li>Lemon Iced Tea</li>
+                      <li>Cold Coffee</li>
+                    </ul>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- About Us -->
+          <li class="nav-item">
+            <a class="nav-link fw-bold" href="about_us.html">About Us</a>
+          </li>
+
+          <!-- Contact Us -->
+          <li class="nav-item">
+            <a class="nav-link fw-bold" href="contact_us.html">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+    <!-- Menu Section -->
+    <div class="my-5 menu-section">
+        <section id="menu" class="py-5 bg-light">
+            <div class="container" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+                <h2 class="text-center display-5 fw-bold section-title mb-1">The flavoral scroll</h2>
+
+                <!-- Desi Menu -->
+               <section id="desi-menu" class="py-3 bg-light">
+    <div class="container">
+        <h2 class="text-center display-5 fw-bold section-title mb-4">Desi Food Categories</h2>
+        <div class="row g-4 justify-content-center">
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Biryaniii.png" class="card-img-top menu-img" alt="Biryani">
+                    <div class="card-body">
+                        <h5 class="card-title">Chicken Biryani</h5>
+                        <p class="card-text">Spiced chicken layered with fragrant basmati rice and aromatic herbs.</p>
+                        <p class="text-success">Rs.1200</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Mutton Karahi.jpg" class="card-img-top menu-img" alt="Karahi">
+                    <div class="card-body">
+                        <h5 class="card-title">Mutton Karahi</h5>
+                        <p class="card-text">Tender mutton pieces cooked in a spicy tomato-based gravy with traditional spices.</p>
+                        <p class="text-success">Rs.2350</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Chapli Kabab.jpg" class="card-img-top menu-img" alt="Chapli Kabab">
+                    <div class="card-body">
+                        <h5 class="card-title">Chapli Kabab</h5>
+                        <p class="card-text">Minced meat patties infused with herbs, spices, and crushed pomegranate seeds, fried to perfection.</p>
+                        <p class="text-success">Rs.1800</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Tandoori Tikka.jpg" class="card-img-top menu-img" alt="Tandoori Tikka">
+                    <div class="card-body">
+                        <h5 class="card-title">Tandoori Tikka</h5>
+                        <p class="card-text">Chunks of chicken marinated in yogurt and spices, grilled in a traditional tandoor.</p>
+                        <p class="text-success">Rs.2000</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Prown Biryani.jpg" class="card-img-top menu-img" alt="Prawn Biryani">
+                    <div class="card-body">
+                        <h5 class="card-title">Prawn Biryani</h5>
+                        <p class="card-text">Juicy prawns layered with spiced basmati rice and fried onions for a rich seafood flavor.</p>
+                        <p class="text-success">Rs.2500</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Prown with Stack.jpg" class="card-img-top menu-img" alt="Prawns With Steak">
+                    <div class="card-body">
+                        <h5 class="card-title">Prawns With Steak</h5>
+                        <p class="card-text">A luxurious combination of juicy prawns and perfectly seared steak, bringing surf and turf together.</p>
+                        <p class="text-success">Rs.3000</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Siri Paye.jpg" class="card-img-top menu-img" alt="Siri Paye">
+                    <div class="card-body">
+                        <h5 class="card-title">Siri Paye</h5>
+                        <p class="card-text">Traditional stew of cow head and trotters, simmered overnight in aromatic spices.</p>
+                        <p class="text-success">Rs.1750</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Haleem.jpg" class="card-img-top menu-img" alt="Haleem">
+                    <div class="card-body">
+                        <h5 class="card-title">Haleem</h5>
+                        <p class="card-text">A rich, thick stew made from wheat, lentils, and slow-cooked meat, garnished with fried onions and lemon.</p>
+                        <p class="text-success">Rs.1200</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Beef Nihari.jpg" class="card-img-top menu-img" alt="Nihari">
+                    <div class="card-body">
+                        <h5 class="card-title">Beef Nihari</h5>
+                        <p class="card-text">Slow-cooked beef shank in a spicy gravy, traditionally enjoyed with naan or kulcha.</p>
+                        <p class="text-success">Rs.1500</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Chicken Kaleji.jpg" class="card-img-top menu-img" alt="Chicken Kaleji">
+                    <div class="card-body">
+                        <h5 class="card-title">Chicken Kaleji</h5>
+                        <p class="card-text">Chicken liver cooked with onions, tomatoes, and traditional spices, served hot and spicy.</p>
+                        <p class="text-success">Rs.1200</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Halwa-Puri.jpg" class="card-img-top menu-img" alt="Halwa Puri">
+                    <div class="card-body">
+                        <h5 class="card-title">Halwa Puri</h5>
+                        <p class="card-text">A traditional breakfast combo of semolina halwa, crispy puris, and spicy chickpea curry.</p>
+                        <p class="text-success">Rs.1500</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Palak Paneer.jpg" class="card-img-top menu-img" alt="Palak Paneer">
+                    <div class="card-body">
+                        <h5 class="card-title">Palak Paneer</h5>
+                        <p class="card-text">Cottage cheese cubes simmered in a creamy spinach gravy, seasoned with garlic and garam masala.</p>
+                        <p class="text-success">Rs.1400</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+<div class="col-12 col-sm-6 col-md-4">
+    <div class="card">
+        <img src="img/DaalChana.jpg" class="card-img-top menu-img" alt="Daal Chana">
+        <div class="card-body">
+            <h5 class="card-title">Daal Chana</h5>
+            <p class="card-text">Split chickpeas slow-cooked with onion, tomatoes, and desi spices.</p>
+            <p class="text-success">Rs.1000</p>
+            <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-12 col-sm-6 col-md-4">
+    <div class="card">
+        <img src="img/AlooKeema.jpg" class="card-img-top menu-img" alt="Aloo Keema">
+        <div class="card-body">
+            <h5 class="card-title">Aloo Keema</h5>
+            <p class="card-text">Minced meat and potatoes cooked in rich spices – a homestyle favorite.</p>
+            <p class="text-success">Rs.1300</p>
+            <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+        </div>
+    </div>
+</div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Seekh Kebab.jpg" class="card-img-top menu-img" alt="Seekh Kebab">
+                    <div class="card-body">
+                        <h5 class="card-title">Seekh Kebab</h5>
+                        <p class="card-text">Minced meat skewers grilled to perfection with authentic desi spices.</p>
+                        <p class="text-success">Rs.1600</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+                <!-- Chinese Menu -->
+                <section id="chinese-menu" class="py-3 bg-light">
+                    <div class="container">
+                        <h2 class="text-center display-5 fw-bold section-title mb-4">Popular Chinese Dishes</h2>
+                        <div class="row g-4 justify-content-center">
+                            <div class="col-12 col-sm-6 col-md-4">
+                                <div class="card">
+                                    <img src="img/Chicken Manchurian.jpg" class="card-img-top menu-img"
+                                        alt="Manchurian">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Chicken Manchurian</h5>
+                                        <p class="card-text">Sweet and tangy chicken with bell peppers and onions.</p>
+                                        <p class="text-success">Rs.1400</p>
+                                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4">
+                                <div class="card">
+                                    <img src="img/Kung Pao Chicken.jpg" class="card-img-top menu-img" alt="Beef Chili">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Beef Chili Dry</h5>
+                                        <p class="card-text">Tender beef strips stir-fried with chili sauce and
+                                            vegetables.
+                                        </p>
+                                        <p class="text-success">Rs.1800</p>
+                                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-6 col-md-4">
+                                <div class="card">
+                                    <img src="img/Schezwan Rice.jpg" class="card-img-top menu-img" alt="Schezwan Rice">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Schezwan Rice</h5>
+                                        <p class="card-text">Fried rice with bold Schezwan spices, vegetables, and meat.
+                                        </p>
+                                        <p class="text-success">Rs.1200</p>
+                                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4">
+                                <div class="card">
+                                    <img src="img/Tempura.jpg" class="card-img-top menu-img"
+                                        alt="Golden Crunch Tempura">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Golden Crunch Tempura</h5>
+                                        <p class="card-text">"Lightly battered and perfectly crispy tempura, delivering
+                                            a harmonious crunch in every bite."</p>
+                                        <p class="text-success">Rs.2500</p>
+                                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-6 col-md-4">
+                                <div class="card">
+                                    <img src="img/Fried Ricee.jpg" class="card-img-top menu-img" alt="Fried Rice">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Egg Fried Rice</h5>
+                                        <p class="card-text">Classic stir-fried rice with scrambled eggs and vegetables.
+                                        </p>
+                                        <p class="text-success">Rs.900</p>
+                                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                                    </div>
+                                </div>
+                            </div>
+
+<div class="col-12 col-sm-6 col-md-4">
+    <div class="card">
+        <img src="img/Chicken Shashlik.jpeg" class="card-img-top menu-img" alt="Chicken Shashlick">
+        <div class="card-body">
+            <h5 class="card-title">Chicken Shashlick</h5>
+            <p class="card-text">Grilled chicken cubes with capsicum, onions, and tomatoes, served in a tangy sauce.</p>
+            <p class="text-success">Rs.1500</p>
+            <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-12 col-sm-6 col-md-4">
+    <div class="card">
+        <img src="img/Momos.png" class="card-img-top menu-img" alt="Momos">
+        <div class="card-body">
+            <h5 class="card-title">Momos</h5>
+            <p class="card-text">Steamed dumplings filled with minced chicken and vegetables, served with spicy dip.</p>
+            <p class="text-success">Rs.850</p>
+            <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-12 col-sm-6 col-md-4">
+    <div class="card">
+        <img src="img/Chicken Chow Mein.jpg" class="card-img-top menu-img" alt="Chicken Chowmein">
+        <div class="card-body">
+            <h5 class="card-title">Chicken Chowmein</h5>
+            <p class="card-text">Stir-fried noodles tossed with chicken, vegetables, and soy-based sauces.</p>
+            <p class="text-success">Rs.1050</p>
+            <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-12 col-sm-6 col-md-4">
+    <div class="card">
+        <img src="img/Beef-Oyster-Sauce.jpg" class="card-img-top menu-img" alt="Beef with Oyster Sauce">
+        <div class="card-body">
+            <h5 class="card-title">Beef with Oyster Sauce</h5>
+            <p class="card-text">Tender slices of beef stir-fried with fresh vegetables in a rich and savory oyster sauce.</p>
+            <p class="text-success">Rs.1900</p>
+            <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-12 col-sm-6 col-md-4">
+    <div class="card">
+        <img src="img/Hot-and-Sour-Soup.jpg" class="card-img-top menu-img" alt="Hot & Sour Soup">
+        <div class="card-body">
+            <h5 class="card-title">Hot & Sour Soup</h5>
+            <p class="card-text">A flavorful soup with shredded chicken, mushrooms, and vegetables in a tangy, spicy broth.</p>
+            <p class="text-success">Rs.700</p>
+            <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-12 col-sm-6 col-md-4">
+    <div class="card">
+        <img src="img/Dynamite Shrimp.png" class="card-img-top menu-img" alt="Dynamite Shrimp">
+        <div class="card-body">
+            <h5 class="card-title">Dynamite Shrimp</h5>
+            <p class="card-text">Crispy fried shrimp tossed in a creamy, spicy dynamite sauce – a crowd favorite starter.</p>
+            <p class="text-success">Rs.2100</p>
+            <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-12 col-sm-6 col-md-4">
+    <div class="card">
+        <img src="img/Vegetable Spring Rolls.jpg" class="card-img-top menu-img" alt="Spring Rolls">
+        <div class="card-body">
+            <h5 class="card-title">Vegetable Spring Rolls</h5>
+            <p class="card-text">Crispy fried rolls filled with seasoned vegetables, served with sweet chili sauce.</p>
+            <p class="text-success">Rs.700</p>
+            <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+        </div>
+    </div>
+</div>
+
+
+                </section>
+
+                <!-- Italian Menu -->
+                <section id="italian-menu" class="py-3 bg-light">
+                    <div class="container">
+                        <h2 class="text-center display-5 fw-bold section-title mb-4"> Famous Italian Dishes</h2>
+                        <div class="row g-4 justify-content-center">
+                            <div class="col-12 col-sm-6 col-md-4">
+                                <div class="card">
+                                    <img src="img/pepporoni pizza.jpg" class="card-img-top menu-img" alt="Pizza">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Pepperoni Pizza</h5>
+                                        <p class="card-text">Hot, cheesy pizza with crispy crust and plenty of
+                                            pepperoni.</p>
+                                        <p class="text-success">Rs.2500</p>
+                                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-6 col-md-4">
+                                <div class="card">
+                                    <img src="img/Pappardelle Bolognese.jpg" class="card-img-top menu-img"
+                                        alt="Pappardelle Bolognese">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Pappardelle Bolognese</h5>
+                                        <p class="card-text">Wide pasta ribbons served with a hearty, slow-cooked meat
+                                            sauce.</p>
+                                        <p class="text-success">Rs.3000</p>
+                                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-6 col-md-4">
+                                <div class="card">
+                                    <img src="img/Creamy Alfredo Pasta.jpg" class="card-img-top menu-img" alt="Pasta">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Creamy Alfredo Pasta</h5>
+                                        <p class="card-text">Pasta tossed in a rich and creamy Alfredo sauce with
+                                            mushrooms.</p>
+                                        <p class="text-success">Rs.1789</p>
+                                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-6 col-md-4">
+                                <div class="card">
+                                    <img src="img/Mushroom Risotto.jpg" class="card-img-top menu-img"
+                                        alt="Mushroom Risotto">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Mushroom Risotto</h5>
+                                        <p class="card-text">Creamy Arborio rice with sautéed mushrooms and Parmesan
+                                            cheese.</p>
+                                        <p class="text-success">Rs.1450</p>
+                                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-6 col-md-4">
+                                <div class="card">
+                                    <img src="img/Bruschetta.jpg" class="card-img-top menu-img" alt="Bruschetta">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Bruschetta</h5>
+                                        <p class="card-text">Grilled bread topped with fresh tomatoes, garlic, and
+                                            basil.</p>
+                                        <p class="text-success">Rs.950</p>
+                                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-6 col-md-4">
+                                <div class="card">
+                                    <img src="img/Lasagna.jpg" class="card-img-top menu-img" alt="Lasagna">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Lasagna</h5>
+                                        <p class="card-text">Layered pasta with meat sauce, béchamel, and melted cheese.</p>
+                                        <p class="text-success">Rs.1899</p>
+                                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </section>
+
+        <!-- Crispy Cravings-->
+<section id="italian-menu" class="py-3 bg-light">
+    <div class="container">
+        <h2 class="text-center display-5 fw-bold section-title mb-4">Crispy Cravings</h2>
+        <div class="row g-4 justify-content-center">
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Crispy Cheesy Sandwich.png" class="card-img-top menu-img" alt="crispy cheese sandwich">
+                    <div class="card-body">
+                        <h5 class="card-title">Crispy Cheesy Sandwich</h5>
+                        <p class="card-text">Toasted sandwich packed with melted cheese and crispy layers – a perfect bite!</p>
+                        <p class="text-success">Rs.1000</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Mozzarella Sticks.jpg" class="card-img-top menu-img" alt="Mozzarella cheese Sticks">
+                    <div class="card-body">
+                        <h5 class="card-title">Mozzarella Sticks</h5>
+                        <p class="card-text">Golden-fried sticks of gooey mozzarella cheese served with tangy marinara sauce.</p>
+                        <p class="text-success">Rs.1200</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/zinger-burger.jpg" class="card-img-top menu-img" alt="zinger-burger">
+                    <div class="card-body">
+                        <h5 class="card-title">Crispy Zinger Burger</h5>
+                        <p class="card-text">Juicy fried chicken fillet in a toasted bun with lettuce, mayo, and signature sauces.</p>
+                        <p class="text-success">Rs.1900</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Fried-Chicken.jpg" class="card-img-top menu-img" alt="Fried-Chicken">
+                    <div class="card-body">
+                        <h5 class="card-title">Fried Chicken</h5>
+                        <p class="card-text">Crispy, golden-brown chicken pieces seasoned with our secret blend of spices.</p>
+                        <p class="text-success">Rs.2200</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Samosaa.jpeg" class="card-img-top menu-img" alt="Samosa">
+                    <div class="card-body">
+                        <h5 class="card-title">Samosa</h5>
+                        <p class="card-text">Crispy deep-fried pastry filled with spicy potato or minced meat mix.</p>
+                        <p class="text-success">Rs.800</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Chicken Loaded Fries.png" class="card-img-top menu-img" alt="Loaded Fries">
+                    <div class="card-body">
+                        <h5 class="card-title">Chicken Loaded Fries</h5>
+                        <p class="card-text">Crispy fries smothered with grilled chicken, melted cheese, sauces, and spices.</p>
+                        <p class="text-success">Rs.2450</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+        <!-- Special BBQ -->
+<section id="bbq-menu" class="py-3 bg-light">
+    <div class="container" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+        <h2 class="text-center display-5 fw-bold section-title mb-4">Special BBQ</h2>
+        <div class="row g-4 justify-content-center">
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Chicken BBQ.jpg" class="card-img-top menu-img" alt="Chicken BBQ">
+                    <div class="card-body">
+                        <h5 class="card-title">Chicken BBQ</h5>
+                        <p class="card-text">Juicy and tender chicken grilled to perfection with a smoky BBQ glaze.</p>
+                        <p class="text-success">Rs.3000</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+<div class="col-12 col-sm-6 col-md-4">
+    <div class="card">
+        <img src="img/BBQ-Beef-Ribs.jpg" class="card-img-top menu-img" alt="BBQ Beef Ribs">
+        <div class="card-body">
+            <h5 class="card-title">BBQ Beef Ribs</h5>
+            <p class="card-text">Tender, slow-cooked beef ribs glazed with smoky BBQ sauce for a bold, juicy flavor.</p>
+            <p class="text-success">Rs.4200</p>
+            <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+        </div>
+    </div>
+</div>
+<div class="col-12 col-sm-6 col-md-4">
+    <div class="card">
+        <img src="img/Spicy-Grilled-Prawns.jpg" class="card-img-top menu-img" alt="Spicy Grilled Prawns">
+        <div class="card-body">
+            <h5 class="card-title">Spicy Grilled Prawns</h5>
+            <p class="card-text">Fresh jumbo prawns grilled with a fiery BBQ rub, served with zesty lemon dip.</p>
+            <p class="text-success">Rs.3800</p>
+            <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+        </div>
+    </div>
+</div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/weber-smoked-salmon.jpg" class="card-img-top menu-img" alt="Grilled Smoked Salmon">
+                    <div class="card-body">
+                        <h5 class="card-title">Grilled Smoked Salmon</h5>
+                        <p class="card-text">Delicately smoked salmon grilled to enhance its rich, savory flavor.</p>
+                        <p class="text-success">Rs.2000</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Grilled Lamb Chops.jpg" class="card-img-top menu-img" alt="Grilled Lamb Chops">
+                    <div class="card-body">
+                        <h5 class="card-title">Grilled Lamb Chops</h5>
+                        <p class="card-text">Succulent lamb chops marinated in BBQ spices and grilled over open flames.</p>
+                        <p class="text-success">Rs.3500</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Grilled Finger Fish.jpg" class="card-img-top menu-img" alt="Grilled Finger Fish">
+                    <div class="card-body">
+                        <h5 class="card-title">Grilled Finger Fish</h5>
+                        <p class="card-text">Crispy finger fish grilled to golden perfection, served with tangy BBQ sauce.</p>
+                        <p class="text-success">Rs.4000</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+        <!-- Icecream -->
+<section id="desserts-menu" class="py-3 bg-light">
+    <div class="container" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+        <h2 class="text-center display-5 fw-bold section-title mb-4">Flavoured Ice Cream</h2>
+        <div class="row g-4 justify-content-center">
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Cup Icecream.jpg" class="card-img-top menu-img" alt="Cup Icecream">
+                    <div class="card-body">
+                        <h5 class="card-title">Cup Ice Cream</h5>
+                        <p class="card-text">Creamy, chilled delight served in a cup with multiple flavor options like chocolate, vanilla, and strawberry.</p>
+                        <p class="text-success">Rs.750</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Cone Icecream.jpg" class="card-img-top menu-img" alt="Cone Icecream">
+                    <div class="card-body">
+                        <h5 class="card-title">Cone Ice Cream</h5>
+                        <p class="card-text">Crispy cone filled with rich and velvety ice cream swirls in your favorite flavors – perfect for a sunny day!</p>
+                        <p class="text-success">Rs.800</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Falooda Icecream.png" class="card-img-top menu-img" alt="Falooda Icecream">
+                    <div class="card-body">
+                        <h5 class="card-title">Falooda Ice Cream</h5>
+                        <p class="card-text">A traditional dessert with layers of flavored ice cream, basil seeds, vermicelli, and rose syrup – served chilled.</p>
+                        <p class="text-success">Rs.1200</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+        <!-- Popular Dessert -->
+        <section id="desserts-menu" class="py-3 bg-light">
+            <div class="container" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+                <h2 class="text-center display-5 fw-bold section-title mb-4"> Popular Desserts</h2>
+                <div class="row g-4 justify-content-center">
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="card">
+                            <img src="img/Lava cake.jpg" class="card-img-top menu-img" alt="Lava Cake">
+                            <div class="card-body">
+                                <h5 class="card-title">Molten Lava Cake</h5>
+                                <p class="card-text">Warm chocolate cake with a gooey molten center, served with ice
+                                    cream.</p>
+                                <p class="text-success">Rs.750</p>
+                                <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="card">
+                            <img src="img/Cheesecake.jpg" class="card-img-top menu-img" alt="Cheesecake">
+                            <div class="card-body">
+                                <h5 class="card-title">New York Cheesecake</h5>
+                                <p class="card-text">Creamy, classic cheesecake on a graham cracker crust, with berry
+                                    compote.</p>
+                                <p class="text-success">Rs.800</p>
+                                <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="card">
+                            <img src="img/Brownie.jpg" class="card-img-top menu-img" alt="Brownie">
+                            <div class="card-body">
+                                <h5 class="card-title">Fudge Brownie with Ice Cream</h5>
+                                <p class="card-text">Rich, chocolatey brownie served warm with a scoop of vanilla ice
+                                    cream.</p>
+                                <p class="text-success">Rs.650</p>
+                                <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cake Shake Bake -->
+<section id="desserts-menu" class="py-3 bg-light">
+    <div class="container" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+        <h2 class="text-center display-5 fw-bold section-title mb-4">Cake Shake Bake</h2>
+        <div class="row g-4 justify-content-center">
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Cup Cakes.jpeg" class="card-img-top menu-img" alt="Cup Cakes">
+                    <div class="card-body">
+                        <h5 class="card-title">Cup Cakes</h5>
+                        <p class="card-text">Soft and fluffy mini cakes topped with creamy frosting in assorted flavors.</p>
+                        <p class="text-success">Rs.750</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Macarons.jpg" class="card-img-top menu-img" alt="Macarons">
+                    <div class="card-body">
+                        <h5 class="card-title">Macarons</h5>
+                        <p class="card-text">Delicate French cookies with a crisp shell and soft, flavored filling.</p>
+                        <p class="text-success">Rs.650</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Birthday Cake.jpeg" class="card-img-top menu-img" alt="Birthday Cake">
+                    <div class="card-body">
+                        <h5 class="card-title">Birthday Cake</h5>
+                        <p class="card-text">A beautifully layered cake with rich frosting, perfect for your celebration.</p>
+                        <p class="text-success">Rs.2000</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+        <!-- Regular Drinks -->
+<section id="desserts-menu" class="py-3 bg-light">
+    <div class="container" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+        <h2 class="text-center display-5 fw-bold section-title mb-4">Regular Drinks</h2>
+        <div class="row g-4 justify-content-center">
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Coffeee.jpg" class="card-img-top menu-img" alt="Coffee">
+                    <div class="card-body">
+                        <h5 class="card-title">Coffee</h5>
+                        <p class="card-text">Freshly brewed aromatic coffee served hot to energize your day.</p>
+                        <p class="text-success">Rs.750</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Kashmiri Kehwa.jpg" class="card-img-top menu-img" alt="Kashmiri Kehwa">
+                    <div class="card-body">
+                        <h5 class="card-title">Kashmiri Kehwa</h5>
+                        <p class="card-text">Traditional pink Kashmiri tea infused with cardamom and almonds.</p>
+                        <p class="text-success">Rs.550</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Tea.jpeg" class="card-img-top menu-img" alt="Special Tea">
+                    <div class="card-body">
+                        <h5 class="card-title">Special Tea</h5>
+                        <p class="card-text">Aromatic milk tea brewed with traditional spices and served hot.</p>
+                        <p class="text-success">Rs.650</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Special Drinks -->
+
+<section id="drinks-menu" class="py-3 bg-light">
+    <div class="container" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+        <h2 class="text-center display-5 fw-bold section-title mb-4">Special Drinks</h2>
+        <div class="row g-4 justify-content-center">
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Margirita.jpg" class="card-img-top menu-img" alt="Mint Margarita">
+                    <div class="card-body">
+                        <h5 class="card-title">Mint Margarita</h5>
+                        <p class="card-text">Refreshing blend of fresh mint, lemon juice, and crushed ice – a zesty chill.</p>
+                        <p class="text-success">Rs.450</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/Iced Matcha Green Tea.jpg" class="card-img-top menu-img" alt="Lemon Iced Tea">
+                    <div class="card-body">
+                        <h5 class="card-title">Lemon Iced Tea</h5>
+                        <p class="card-text">Cool black tea infused with lemon and sweetened to perfection.</p>
+                        <p class="text-success">Rs.350</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="img/iced-latte.jpg" class="card-img-top menu-img" alt="Cold Coffee">
+                    <div class="card-body">
+                        <h5 class="card-title">Cold Coffee</h5>
+                        <p class="card-text">Icy smooth coffee mixed with milk and a touch of sweetness – served chilled.</p>
+                        <p class="text-success">Rs.500</p>
+                        <a href="order.html" class="btn btn-custom w-100 mt-2">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container text-center">
+            <img src="img/Logo.png" alt="Munch Cult Logo" class="mb-2 rounded-circle" style="width: 80px; height: 80px; object-fit: cover;" />
+            <p class="mb-1 fw-bold">Munch Cult</p>
+            <p class="mb-2">Serving Flavor with Passion</p>
+            <div class="mb-2">
+                <a href="https://www.instagram.com/_dinx_pvt_430/#" class="me-3 fs-4"><i class="bi bi-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/m-dinesh-d30/" class="me-3 fs-4"><i class="bi bi-instagram"></i></a>
+                <a href="mailto:contact@munchcult.com" class="fs-4"><i class="bi bi-envelope-fill"></i></a>
+            </div>
+            <small>&copy; 2025 Munch Cult. All rights reserved.</small>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
