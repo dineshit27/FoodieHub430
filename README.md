@@ -10,20 +10,8 @@ Explore the live version of my portfolio here:
 ![GitHub forks](https://img.shields.io/github/forks/dineshit27/FoodieHub430?style=social)
 ![License](https://img.shields.io/github/license/dineshit27/FoodieHub430?style=social)
 
-## 🛠️ Tech Stack Badges
+## 🛠️ Tech Stacks
 
-### Frontend
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
-
-### Utilities
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)
-![Visual Studio Code](https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)
-
-### 💻 Tech Stack
 | Frontend       | Utilities      |
 |----------------|----------------|
 | HTML5          | Git            |
